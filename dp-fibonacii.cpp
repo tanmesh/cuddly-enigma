@@ -22,9 +22,7 @@ long long fibo(int i) {
 int main() {
 	int n;
 	cin >> n;
-	for(int i=0;i<1000;++i) {
-		dp[i]=-1;
-	}
+	memset(dp, -1, sizeof(dp));
 	cout << fibo(n) << endl;
 	return 0;
 }
