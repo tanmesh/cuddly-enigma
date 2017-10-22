@@ -3,22 +3,24 @@
 using namespace std;
 
 vector< vector< int > > ans;
+int cnt;
 
 int subset_cnt(vector<int> a) {
 	ans.push_back(a);
-	if(a.size() != 1) {
-		for(int i=0; i<a.size(); ++i) {
-			vector<int> tmp;
-			for(int j=0; j<a.size(); ++j) {
-				if(i !=j) {
-					tmp.push_back(a[j]);
-				}
-			}
-			return 1+subset_cnt(tmp);
-			tmp.clear();
-		}	
+	if(a.size() == 1) {
+		return 1;
 	}
-	return 1;
+	for(int i=0; i<a.size(); ++i) {
+		vector<int> tmp;
+		for(int j=0; j<a.size(); ++j) {
+			if(i !=j) {
+				tmp.push_back(a[j]);
+			}
+		}
+		cnt = 1+subset_cnt(tmp);
+		tmp.clear();
+	}	
+	return cnt;
 }
 
 int main() {
@@ -30,7 +32,12 @@ int main() {
 		cin >> tmp;
 		a.push_back(tmp);
 	}
-	cout << 1+subset_cnt(a) << endl;
-	// cout << ans.size() << endl;
+	cout << 1 + subset_cnt(a) << endl << endl;
+	for(int i=0; i<ans.size(); ++i) {
+		for(int j=0; j<ans[i].size(); ++j) {
+			cout << a[i][j] << " ";
+		}
+		cout << endl;
+	}
 	return 0;
 }
