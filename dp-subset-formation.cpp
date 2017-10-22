@@ -3,24 +3,20 @@
 using namespace std;
 
 vector< vector< int > > ans;
-int cnt;
 
-int subset_cnt(vector<int> a) {
-	ans.push_back(a);
-	if(a.size() == 1) {
-		return 1;
+void generateSubset(int i, vector<int> a, vector<int> curr_subset) {
+	if(i==a.size()) {
+		ans.push_back(curr_subset);
+		return;
 	}
-	for(int i=0; i<a.size(); ++i) {
-		vector<int> tmp;
-		for(int j=0; j<a.size(); ++j) {
-			if(i !=j) {
-				tmp.push_back(a[j]);
-			}
-		}
-		cnt = 1+subset_cnt(tmp);
-		tmp.clear();
-	}	
-	return cnt;
+	
+	// taking a[i] in the present subset
+	curr_subset.push_back(a[i]); 
+	generateSubset(i+1, a, curr_subset);
+
+	// ignoring a[i] in the present subset
+	curr_subset.pop_back(); 
+	generateSubset(i+1, a, curr_subset);	
 }
 
 int main() {
@@ -32,12 +28,18 @@ int main() {
 		cin >> tmp;
 		a.push_back(tmp);
 	}
-	cout << 1 + subset_cnt(a) << endl << endl;
-	for(int i=0; i<ans.size(); ++i) {
-		for(int j=0; j<ans[i].size(); ++j) {
-			cout << a[i][j] << " ";
+
+	vector<int> curr_subset;
+	generateSubset(0, a, curr_subset);
+
+	cout<<ans.size()<<endl;
+	for(int i=0;i<ans.size(); ++i){
+		cout << "{ ";
+		for(int j=0;j<ans[i].size();++j){
+			cout<<ans[i][j]<<" ";
 		}
-		cout << endl;
+		cout << "}";
+		cout<<endl;
 	}
 	return 0;
 }
