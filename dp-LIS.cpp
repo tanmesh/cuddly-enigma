@@ -5,43 +5,56 @@
 
 using namespace std;
 
-int dp[100];
+vector< vector< int > > ans;
 
-int lis(int a[], int n) {
-	int ans, cnt = 1;
-	vector<int> arr;
-	arr.push_back(dp[0]);
+int max(int x, int y) {
+	return x>y? x : y;
+}
 
-	for(int i=1; i<n; ++i) {
-		if(a[i] >= a[i-1]) {
-			if(cnt == 1) {
-				arr.push_back(a[i-1]);	
-			}
-			dp[i] = ++cnt;
-			ans = max(ans, cnt);
-			arr.push_back(a[i]);
-		}
-		else{
-			cnt = 1;
-			arr.clear();
+void generateSubset(int i, vector<int> a, vector<int> curr_subset) {
+	if(i==a.size()) {
+		ans.push_back(curr_subset);
+		return;
+	}
+	curr_subset.push_back(a[i]); 
+	generateSubset(i+1, a, curr_subset);
+
+	curr_subset.pop_back(); 
+	generateSubset(i+1, a, curr_subset);	
+}
+
+bool check_is_lis(vector<int> a) {
+	for(int i=1; i<a.size(); ++i) {
+		if(a[i] < a[i-1]) {
+			return false;
 		}
 	}
+	return true;
+}
 
-	for(int i=0; i<arr.size(); ++i) {
-		cout << arr[i] << " "; 
+int lis(vector<int> a) {
+	int b = 1, n = a.size();
+	vector<int> curr_subset;
+	generateSubset(0, a, curr_subset);
+
+	for(int i=0; i<ans.size(); ++i) {
+		if(check_is_lis(ans[i])) {
+			b = max((ans[i]).size() , b);
+		}
 	}
-	cout << endl;
-	return ans;
+	return b;
 }
 
 int main() {
 	int n;
 	cin >> n;
-	int a[n];
+	vector<int> a;
 	for(int i=0; i<n; ++i) {
-		cin >> a[i];
+		int tmp;
+		cin >> tmp;
+		a.push_back(tmp);
 	}
-	memset(dp , 1, sizeof(dp));
-	cout << lis(a, n) << endl;
+
+	cout << lis(a) << endl;
 	return 0;
 }
