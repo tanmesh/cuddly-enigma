@@ -16,7 +16,7 @@ void Topo(int u, vector<int>& visited) {
 			Topo(v, visited);
 		}
 	}
-	cout << u  << endl;
+	cout << u+1  << endl;
 }
 
 int main() {

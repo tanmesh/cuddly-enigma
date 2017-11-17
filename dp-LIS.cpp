@@ -33,7 +33,7 @@ bool check_is_lis(vector<int> a) {
 }
 
 int lis(vector<int> a) {
-	int b = 1, n = a.size();
+	int b = 1 , n = a.size();
 	vector<int> curr_subset;
 	generateSubset(0, a, curr_subset);
 
