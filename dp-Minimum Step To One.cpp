@@ -23,7 +23,10 @@ int f(int i) {
 	int &res = dp[i];
 	if(res == -1) {
 		res = 0;
-		if(i == 1 || i == 2 || i == 3) {
+		if(i == 1) {
+			res = 0;
+		}
+		else if(i == 2 || i == 3) {
 			res = 1;
 		}	
 		else{
