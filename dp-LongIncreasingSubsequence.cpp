@@ -12,11 +12,13 @@ int LIS(int i) {
 		if(i == 0) {
 			res = 1;
 		}
-		for(int j=0; j<=i; ++j) {
-			if(arr[j] < arr[i]) 
-				res = max(res, LIS(j)+1);
+		else{
+			for(int j=0; j<i; ++j) {
+				if(arr[j] < arr[i]) 
+					res = max(res, LIS(j)+1);
+				}
+			}
 		}
-	}
 	return res;
 }
 
@@ -31,9 +33,5 @@ int main() {
 	memset(dp, -1, sizeof(dp));
 
 	cout << "Ans = " << LIS(n-1) << endl;
-	for(int i=0; i<n; ++i) {
-		cout << dp[i] << " ";
-	}
-	cout << endl;
 	return 0;
 }
