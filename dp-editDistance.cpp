@@ -16,7 +16,7 @@ int editDistance(int i, int j, string& s1, string& s2) {
 			res = i;
 		}
 		else {
-			if(s1[i] == s2[j]) {
+			if(s1[i-1] == s2[j-1]) {
 				res = editDistance(i-1, j-1, s1, s2);
 			}
 			else {
