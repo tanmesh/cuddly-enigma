@@ -32,7 +32,7 @@ int editDistance(int i, int j, string& s1, string& s2) {
 
 int main() {
 	string s1, s2;
-	cout << "Enter string\n";
+	cout << "Enter the string\n";
 	cin >> s1 >> s2;
 
 	memset(dp, -1, sizeof(dp));
