@@ -1,69 +1,76 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-void print(int *a,int n){
-	for(int i=0;i<n;++i){
-		cout << a[i] << " ";
-	}
-	cout << endl;
-}
-void merge(int* a,int i,int j){
-	int mid=(i+j)/2,n=j+1;
-	int b[n],l=0,k=mid+1;
-	int start=i,end=j;
-	while(i<=mid && k<=j){
-		if(a[i]<a[k]){
-			b[l++]=a[i++];
-		}
-		else{
-			b[l++]=a[k++];
-		}
-	}
-	if(i>mid){
-		while(k<=j){
-			b[l++]=a[k++];
-		}
-	}
-	else{
-		while(i<=mid){
-			b[l++]=a[i++];
-		}
-	}
-	l=0;
-	for(int i=start;i<=end;++i){
-		a[i]=b[l++];
-	}
-}
+void merge(int* ptr, int l, int h) {
+    int start = l, end = h;
+    int mid = (l+h)/2;
+    int arr[h+1];
 
-void mergesort(int *ptr,int i,int j){
-	if(i>=j){
-		return;
-	}
-	int mid=(i+j)/2;
-	mergesort(ptr,i,mid);
-	mergesort(ptr,mid+1,j);
-	merge(ptr,i,j);
-}
-int main(){
-	int n;
-	cin >> n;
-	int a[n];	
-	for(int i=0;i<n;++i){
-		cin >> a[i];
-	}
-	mergesort(&a[0],0,n-1);
-	print(&a[0],n);
+    int i = l, j = mid+1, k = 0;
+
+    while(i <= mid && j <= h) {
+        if(*(ptr+i) < *(ptr+j)) {
+            arr[k++] = *(ptr+i);
+            ++i;
+        }
+        else{
+            arr[k++] = *(ptr+j);   
+            ++j;
+        }
+    }
+
+    if(i <= mid) {
+        while(i <= mid) {
+            arr[k++] = *(ptr+i);
+            ++i;
+        }
+    }
+
+    if(j <= h) {
+        while(j <= h) {
+            arr[k++] = *(ptr+j);   
+            ++j;
+        }
+    }
+
+    j = 0;
+    for(int i=start; i<=end; ++i) {
+        *(ptr+i) = arr[j++];
+    } 
+    // ptr = arr;
 }
 
+void print(int arr[], int n) {
+    for(int i=0; i<n; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
 
+void mergesort(int *ptr, int l, int h) {
+    if(l < h) {
+        int mid = (l+h)/2;
 
+        mergesort(ptr, l, mid);
+        mergesort(ptr, mid+1, h);
 
+        merge(ptr, l, h);
+    }
+}
 
+int main() {
+    int n;
+    cin >> n;
 
+    int arr[n];
+    for(int i=0; i<n; ++i) {
+        cin >> arr[i];
+    }
 
+    mergesort(arr, 0, n-1);
 
-
+    print(arr, n);
+    return 0;
+}
