@@ -42,13 +42,6 @@ void merge(int* ptr, int l, int h) {
     // ptr = arr;
 }
 
-void print(int arr[], int n) {
-    for(int i=0; i<n; ++i) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
-
 void mergesort(int *ptr, int l, int h) {
     if(l < h) {
         int mid = (l+h)/2;
@@ -71,6 +64,9 @@ int main() {
 
     mergesort(arr, 0, n-1);
 
-    print(arr, n);
+    for(int i=0; i<n; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
     return 0;
 }
