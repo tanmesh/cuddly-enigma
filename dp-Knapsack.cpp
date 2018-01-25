@@ -9,7 +9,7 @@ int knapsack(int totalWeigth, vector<int>& weight, vector<int>& value) {
 
     int& res = dp[totalWeigth];
     if(res == -1) {
-        if(totalWeigth <= 0) {
+        if(totalWeigth == 0) {
             res = 0;
         }
         else{
