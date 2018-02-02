@@ -12,9 +12,9 @@ int knapsack(int i, int totalWeigth, vector<int>& weight, vector<int>& value) {
             res = 0;
         }
         else{
-            int costWithoutIth, costWithIth;
+            int costWithoutIth = 0, costWithIth = 0;
 
-            if(totalWeigth-weight[i] > 0) {
+            if(totalWeigth-weight[i] >= 0) {
                 costWithIth = value[i] + knapsack(i+1, totalWeigth-weight[i], weight, value);
             }
 
@@ -48,11 +48,6 @@ int main() {
 
     cout << knapsack(0, totalWeigth, weight, value) << endl;
 
-    // for(int i=0; i<weight.size(); ++i) {
-    //     for(int j=0; j<totalWeigth; ++j) {
-    //         cout << dp[i][j] << endl;
-    //     }
-    // }
     return 0;
 }
 
