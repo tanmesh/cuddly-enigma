@@ -12,11 +12,15 @@ int knapsack(int i, int totalWeigth, vector<int>& weight, vector<int>& value) {
             res = 0;
         }
         else{
-            if(totalWeigth > 0) {
-                int costWithIth = value[i] + knapsack(i+1, totalWeigth-weight[i], weight, value);
-                int costWithoutIth = knapsack(i+1, totalWeigth, weight, value);
-                res = max(costWithIth, costWithoutIth);
+            int costWithoutIth, costWithIth;
+
+            if(totalWeigth-weight[i] > 0) {
+                costWithIth = value[i] + knapsack(i+1, totalWeigth-weight[i], weight, value);
             }
+
+            costWithoutIth = knapsack(i+1, totalWeigth, weight, value);
+
+            res = max(costWithIth, costWithoutIth);
         }    
     }
     return res;
@@ -51,3 +55,4 @@ int main() {
     // }
     return 0;
 }
+
