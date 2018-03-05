@@ -4,7 +4,7 @@ using namespace std;
 
 vector< vector< int > > ans;
 
-void generateSubset(int i, vector<int> a, vector<int> curr_subset) {
+void generateSubset(int i, vector<int>& a, vector<int>& curr_subset) {
 	if(i==a.size()) {
 		ans.push_back(curr_subset);
 		return;
