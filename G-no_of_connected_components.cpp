@@ -13,14 +13,25 @@ void dfs(int u, vector<bool>& visited, vector<int> graph[]) {
 	}
 }
 
-void connectedComponent(int v, vector<int> graph[]) {
+int connectedComponent(int v, vector<int> graph[]) {
 	vector<bool> visited(v, false);
+	int cnt=0, ans=0;
 	for(int i=0; i<v; ++i) {
 		if(!visited[i]){
+			++cnt;
 			dfs(i, visited, graph);
 			cout << endl;
 		}
+		else if(cnt!=0){
+			++ans;
+			cnt = 0;
+		}
 	}
+	if(cnt!=0){
+		++ans;
+		cnt = 0;
+	}
+	return ans;
 }
 
 int main() {
@@ -34,6 +45,6 @@ int main() {
 		graph[n].push_back(m);
 	}
 
-	connectedComponent(v, graph);
+	cout << connectedComponent(v, graph) << endl;
 	return 0;
 }
