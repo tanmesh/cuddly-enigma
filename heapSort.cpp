@@ -11,34 +11,19 @@ void swap(int& a, int& b) {
 }
 
 void heapify(vector<int> &heapArr, int i, int n) {
-	if(n == 0) {
-		return;
-	}
-	while(i < n/2){
-		// no rigth child
-		if(2*i+2 >= n) {
-			if(heapArr[i] > heapArr[2*i+1]) {
-				// swap parent and left node
-				swap(heapArr[i], heapArr[2*i+1]);
-				i=2*i+1;
-			}
-		}
-		else if(heapArr[i] > heapArr[2*i+1] || heapArr[i] > heapArr[2*i+2]) {
-			if(heapArr[2*i+1] < heapArr[2*i+2]) {
-				// swap parent and left node
-				swap(heapArr[i], heapArr[2*i+1]);
-				i=2*i+1;
-			}
-			else{
-				// swap parent and right node
-				swap(heapArr[i], heapArr[2*i+2]);	
-				i=2*i+2;
-			}
-		}
-		else{
-			break;
-		}
-	}
+	int min_id=i;
+    if(2*i <= n){
+        if(heapArr[2*i] < heapArr[min_id])
+        	min_id = 2*i;
+    }
+    if(2*i+1 <= n){
+        if(heapArr[2*i+1] < heapArr[min_id])
+        	min_id = 2*i+1;
+    }
+    if(min_id != i){
+		swap(heapArr[i], heapArr[min_id]);
+		heapify(heapArr, min_id,n);
+    }
 }
 
 void buildHeap(vector<int> &heapArr) {
@@ -79,7 +64,6 @@ int main() {
 		heapArr.push_back(tmp);
 	}
 
-	// printHeap(heapArr);
 	buildHeap(heapArr);
 	// printHeap(heapArr);
 	heapSort(heapArr);
