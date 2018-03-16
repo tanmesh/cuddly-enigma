@@ -16,17 +16,16 @@ using namespace std;
 // 2
 
 
-bool dfs(int u, vector<int>& visited, vector<int>& parent, vector<int> graph[]) {
+void dfs(int u, vector<int>& visited, vector<int>& parent, vector<int> graph[]) {
 	visited[u]=1;
 	cout << u << " ";
 	for(int i=0; i<graph[u].size(); ++i) {
 		int v = graph[u][i];
 		parent[i] = u;
-		if(!visited[v] && dfs(v, visited, parent, graph)){
-			return true;
+		if(!visited[v]){
+			dfs(v, visited, parent, graph);
 		}
 	}
-	return false;
 }
 
 int main() {
