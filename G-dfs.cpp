@@ -21,7 +21,7 @@ void dfs(int u, vector<int>& visited, vector<int>& parent, vector<int> graph[]) 
 	cout << u << " ";
 	for(int i=0; i<graph[u].size(); ++i) {
 		int v = graph[u][i];
-		parent[i] = u;
+		// parent[i] = u;
 		if(!visited[v]){
 			dfs(v, visited, parent, graph);
 		}
