@@ -8,36 +8,24 @@ void heapify(int* ptr, int i, int n) {
 		// only left child
 		if(2*i+1 > n) {
 			int leftChild = *(ptr + 2*i-1);
-
 			if(parent > leftChild) {
 				// swap(parent, leftChild);
-				int tmp = *(ptr + i-1);
-				*(ptr + i-1) = *(ptr + 2*i-1);
-				*(ptr + 2*i-1) = tmp;
-
+				swap(*(ptr + i-1), *(ptr + 2*i-1));
 				i = 2*i;
 			}
-
 		}
 		// both child are there
 		else{
 			int leftChild = *(ptr + 2*i-1), rightChild = *(ptr + 2*i + 1-1);
-
 			if(parent > leftChild || parent > rightChild) {
 				if(leftChild < rightChild) {
 					// swap(parent, leftChild);
-					int tmp = *(ptr + i-1);
-					*(ptr + i-1) = *(ptr + 2*i-1);
-					*(ptr + 2*i-1) = tmp;
-
+					swap(*(ptr + i-1), *(ptr + 2*i-1));
 					i = 2*i;
 				}
 				else{
 					// swap(parent, rightChild);
-					int tmp = *(ptr + i-1);
-					*(ptr + i-1) = *(ptr + 2*i + 1-1);
-					*(ptr + 2*i + 1-1) = tmp;
-
+					swap(*(ptr + i-1), *(ptr + 2*i + 1-1));
 					i = 2*i + 1;
 				}
 			}
