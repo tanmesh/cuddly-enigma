@@ -22,25 +22,26 @@ int find(int i, vector<int>& parent) {
 }
 
 void Union(int u, int v, vector<int>& parent) {
-	cout << u << " " << v << endl;
-	cout << endl;
-	if(rnk[u] > rnk[v]) {
-		++rnk[u];
-		parent[v] = parent[u];
-	}
-	else if(rnk[u] < rnk[v]){
-		++rnk[v];
-		parent[u] = parent[v];
-	}
-	else {
-		++rnk[v], ++rnk[u];
-		parent[u] = parent[v];
-	}
-	for(int i=0; i<parent.size(); ++i) {
-		cout << i << " : " << parent[i] << endl;
-	}
-	cout << endl;
+	// // cout << u << " " << v << endl;
+	// // cout << endl;
+	// if(rnk[u] > rnk[v]) {
+	// 	++rnk[u];
+	// 	parent[v] = parent[u];
+	// }
+	// else if(rnk[u] < rnk[v]){
+	// 	++rnk[v];
+	// 	parent[u] = parent[v];
+	// }
+	// else {
+	// 	++rnk[v], ++rnk[u];
+	// 	parent[u] = parent[v];
+	// }
+	// // for(int i=0; i<parent.size(); ++i) {
+	// // 	cout << i << " : " << parent[i] << endl;
+	// // }
+	// // cout << endl;
 
+	parent[find(u, parent)] = find(v, parent);
 }
 
 void krushkal(vector< pair <int, pp> >& G, int v, vector< pair <int, pp> >& T) {
@@ -58,18 +59,17 @@ void krushkal(vector< pair <int, pp> >& G, int v, vector< pair <int, pp> >& T) {
 		if(find(u, parent) != find(v, parent)) {
 			ans += G[i].f;
 			T.push_back(G[i]);
-			cout << u << " " << v << endl;
 			Union(find(u, parent), find(v, parent), parent);
 		}
 	}
 
-	// cout << ans << endl;
-	// cout << "Edge :" << " Weight" << endl;
- //    for (int i = 0; i < T.size(); i++) {
- //        cout << T[i].second.first << " - " << T[i].second.second << " : "
- //                << T[i].first;
- //        cout << endl;
- //    }
+	cout << ans << endl;
+	cout << "Edge :" << " Weight" << endl;
+    for (int i = 0; i < T.size(); i++) {
+        cout << T[i].second.first << " - " << T[i].second.second << " : "
+                << T[i].first;
+        cout << endl;
+    }
 }
 
 int main() {
