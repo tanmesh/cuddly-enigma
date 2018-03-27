@@ -15,10 +15,11 @@ typedef pair<int,int> pp;
 vector<int> rnk(100, 0);
 
 int find(int i, vector<int>& parent) {
-	if(parent[i] == i) {
-		return i;
-	}
-	return find(parent[i], parent);
+	// if(parent[i] == i) {
+	// 	return i;
+	// }
+	// return find(parent[i], parent);
+	return i == parent[i] ? i : parent[i] = find(parent[i], parent);
 }
 
 void Union(int u, int v, vector<int>& parent) {
