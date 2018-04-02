@@ -11,18 +11,19 @@ void swap(int& a, int& b) {
 }
 
 void heapify(vector<int> &heapArr, int i, int n) {
-	int min_id=i;
-    if(2*i <= n){
+	int min_id=i; // tmp
+	
+    if(2*i < n){
         if(heapArr[2*i] < heapArr[min_id])
         	min_id = 2*i;
     }
-    if(2*i+1 <= n){
+    if(2*i+1 < n){
         if(heapArr[2*i+1] < heapArr[min_id])
         	min_id = 2*i+1;
     }
     if(min_id != i){
 		swap(heapArr[i], heapArr[min_id]);
-		heapify(heapArr, min_id,n);
+		heapify(heapArr, min_id, n);
     }
 }
 
@@ -46,7 +47,7 @@ void delMin(vector<int>& heapArr, int n) {
 
 void heapSort(vector<int>& heapArr) {
 	int n = heapArr.size();
-	for(int i=n-1; i>0; --i) {
+	for(int i=n-1; i>0; --i ) {
 		delMin(heapArr, i);
 		heapify(heapArr, 0, i-1);
 	}
@@ -65,7 +66,7 @@ int main() {
 	}
 
 	buildHeap(heapArr);
-	// printHeap(heapArr);
-	heapSort(heapArr);
+	printHeap(heapArr);
+	// heapSort(heapArr);
 	return 0;
 }
