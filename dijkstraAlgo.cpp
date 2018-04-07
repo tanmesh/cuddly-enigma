@@ -33,8 +33,10 @@ void dijktra(vector< PP > graph[], int v) {
     	}
 	}
 	for(int i=0;i<v;++i) {
-		cout<<i<<" : "<<dis[i]<<endl;
+		if(i!=scr)
+		cout<<dis[i]<<" " ;
 	}
+	cout << endl;
 }
 
 int main() {
