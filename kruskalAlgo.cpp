@@ -15,33 +15,10 @@ typedef pair<int,int> pp;
 vector<int> rnk(100, 0);
 
 int find(int i, vector<int>& parent) {
-	// if(parent[i] == i) {
-	// 	return i;
-	// }
-	// return find(parent[i], parent);
 	return i == parent[i] ? i : parent[i] = find(parent[i], parent);
 }
 
 void Union(int u, int v, vector<int>& parent) {
-	// // cout << u << " " << v << endl;
-	// // cout << endl;
-	// if(rnk[u] > rnk[v]) {
-	// 	++rnk[u];
-	// 	parent[v] = parent[u];
-	// }
-	// else if(rnk[u] < rnk[v]){
-	// 	++rnk[v];
-	// 	parent[u] = parent[v];
-	// }
-	// else {
-	// 	++rnk[v], ++rnk[u];
-	// 	parent[u] = parent[v];
-	// }
-	// // for(int i=0; i<parent.size(); ++i) {
-	// // 	cout << i << " : " << parent[i] << endl;
-	// // }
-	// // cout << endl;
-
 	parent[find(u, parent)] = find(v, parent);
 }
 
