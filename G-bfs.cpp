@@ -25,12 +25,10 @@ void BFS(int i, vector<bool>& visited, vector<int>& parent,  vector<int> graph[]
 		for(auto it = graph[i].begin(); it!=graph[i].end(); ++it) {
 			if(!visited[*it]) {
 				visited[*it] = true;
-				// parent[*it] = i;
 				q.push(*it);
 			}
 		}
 	}
-
 }
 
 int main() {
@@ -42,7 +40,6 @@ int main() {
 		int u ,v;
 		cin >> u >> v;
 		graph[u].push_back(v);
-		// graph[v].push_back(u);
 	}
 
 	cout << endl << endl;

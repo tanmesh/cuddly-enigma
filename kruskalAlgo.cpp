@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -12,7 +13,6 @@ using namespace std;
 typedef pair<int,int> pp;
 #define MOD 1000000007
 
-vector<int> rnk(100, 0);
 
 int find(int i, vector<int>& parent) {
 	return i == parent[i] ? i : parent[i] = find(parent[i], parent);

@@ -6,7 +6,7 @@
 // #include<bits/stdc++.h>
 using namespace std;
 
-#define pb                          push_back
+#define pb push_back
 
 typedef long long ll;
 
@@ -16,16 +16,18 @@ int makingChange(int i, vector<int>& sack, int v) {
 	int& res = dp[i][v];
 	if(res == -1) {
 		res = 0;
-		if(i == 0 || v == 0) {
+		if(i == -1 || v == 0) {
 			res = 1;
 		}
 		else{
+			int taken=0;
 			if(v-sack[i] >= 0) {
-				// int taken = makingChange(i, sack, v-sack[i]);
-				// int not_taken = makingChange(i-1, sack, v);
-				// res = taken + not_taken;
-				res = makingChange(i, sack, v-sack[i]) + makingChange(i-1, sack, v);
+				taken = makingChange(i, sack, v-sack[i]);
+				// res = makingChange(i, sack, v-sack[i]) + makingChange(i-1, sack, v);
 			}
+			int not_taken = makingChange(i-1, sack, v);
+			// cout << taken << " " << not_taken << endl;
+			res = taken + not_taken;
 		}
 	}
 	return res;

@@ -24,19 +24,24 @@ int lis(int i, vector<int> &arr) {
 }
 
 int main() {
-    int n;
-    cin >> n;
+    int t;
+    cin >> t;
+ 
+    while(t--) {
+        int n;
+        cin >> n;
 
-    memset(dp, -1, sizeof(dp));
+        memset(dp, -1, sizeof(dp));
 
-    vector<int> arr;
-    for(int i=0; i<n; ++i) {
-        int tmp;
-        cin >> tmp;
-        arr.push_back(tmp);
+        vector<int> arr;
+        for(int i=0; i<n; ++i) {
+            int tmp;
+            cin >> tmp;
+            arr.push_back(tmp);
+        }
+
+        cout << lis(n-1, arr) << endl;
     }
-
-    cout << lis(n-1, arr) << endl;
     
     return 0;
 }

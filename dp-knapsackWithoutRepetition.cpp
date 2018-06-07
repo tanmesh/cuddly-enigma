@@ -5,6 +5,14 @@ using namespace std;
 
 int dp[1000][1000];
 
+// input
+// 3
+// 10 20 30
+// 60 100 120
+// 50
+// output
+// 220
+
 int knapsack(int i, int totalWeigth, vector<int>& weight, vector<int>& value) {
     int& res = dp[i][totalWeigth];
     if(res == -1) {
